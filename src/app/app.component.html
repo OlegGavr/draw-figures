@@ -1,0 +1,37 @@
+<div class="content" role="main">
+
+  <!-- Highlight Card -->
+  <div class="card highlight-card">
+    <h2>Draw Figures</h2>
+  </div>
+
+  <h2>Write the command(s)</h2>
+
+  <textarea class="textarea" placeholder="figureName -p [x, y]... options"></textarea>
+  <div class="tip-block">
+    <span class="example">Example: line -p [20, 20] [50, 70] -c rgb(240, 100, 50)</span>
+    <span class="tip">Show all &darr;</span>
+    <!-- <span class="tip">Hide all &uarr;</span> -->
+  </div>
+
+  <div class="tip-content">
+    <h3>All commands</h3>
+    <ul>
+      <li>line -p [50, 50] [100, 100] -c rgb(255, 0, 0)</li>
+      <li>rectangle -p [50, 50] [100, 100] -c rgb(0, 255, 0) -b rgba(255, 0, 0, 0.3)</li>
+      <li>triangle -p [50, 50] [50, 100] [100, 100] -c rgb(0, 0, 255) -b rgba(255, 0, 0,0.3)</li>
+      <li>circle -p [75, 75] -r 25 -c rgba(255, 0, 0, 0.8) -b rgba(0, 255, 0, 0.3)</li>
+      <li>ellipse -p [75, 75] -r1 50 -r2 25 -c rgb(0, 255, 0) -b rgba(255, 0, 0, 0.3)</li>
+    </ul>
+  </div>
+
+  <button class="button">Draw</button>
+
+  <!-- Terminal -->
+  <div class="terminal">
+    <canvas></canvas>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,194 @@
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+	color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.content {
+	background: #f8f8f8;
+	box-shadow: 0 4px 5px 7px rgb(167, 167, 167);
+    border-radius: 5px;
+    display: flex;
+    margin: 15px auto 10px;
+    padding: 0 16px 10px 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      	margin: 8px 0;
+    }
+  
+    p {
+      	margin: 0;
+    }
+  
+    .card {
+		border-radius: 4px;
+		border: 1px solid #eee;
+		background-color: #fafafa;
+		height: 40px;
+		width: 200px;
+		margin: 0 8px 16px;
+		padding: 16px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.2s ease-in-out;
+		line-height: 24px;
+    }
+  
+    .card.highlight-card {
+		background: #1976d2;
+		border: 1px solid #1976d2;
+		color: white;
+		font-weight: 600;
+		border: none;
+		height: 16px;
+		width: 100%;
+		min-width: 30%;
+		position: relative;
+	}
+
+	.textarea {
+		padding: 2px 5px;
+		width: 80%;
+		min-width: 200px;
+		max-width: 600px;
+		height: 75px;
+		resize: none;
+		outline: none;
+	}
+
+	.tip-block {
+		margin-top: 5px;
+		width: 80%;
+		min-width: 200px;
+		max-width: 600px;
+		display: flex;
+		font-size: 12px;
+		color: rgb(138, 138, 138);
+
+		.tip {
+			display: inline-block;
+			margin-left: auto;
+			color: rgb(115, 187, 255);
+			text-align: right;
+			border-radius: 50%;
+			cursor: pointer;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.tip-content {
+		display: none;
+		
+		margin: 5px 0;
+		width: 80%;
+		min-width: 200px;
+		max-width: 600px;
+		box-shadow: inset 0 0 3px 2px rgb(216, 216, 216);
+		background: #fff;
+		border-radius: 2px;
+		z-index: 100;
+		color: rgb(59, 59, 59);
+		font-size: 13px;
+
+		h3 {
+			text-align: center;
+			margin: 2px 0;
+		}
+
+		ul {
+			margin: 5px 0;
+			padding: 0 25px;
+			list-style: circle;
+		}
+	}
+	
+	.button {
+		width: max-content;
+		min-width: 100px;
+		border-radius: 3px;
+		background: rgb(0, 160, 240);
+		border: 1px solid rgb(0, 160, 240);
+		color: #ffffff;
+		height: 30px;
+		line-height: 26px;
+		margin: 10px 0 0 10px;
+		padding: 0 10px;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+	
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		&:hover {
+			background: rgb(20, 166, 240);
+		}
+	
+		&:active {
+			outline: none;
+			background: rgb(0, 153, 230);
+		}
+	
+		&:focus {
+			outline: none;outline: none;
+			border: 1px solid rgb(42, 127, 167);
+		}
+	}
+  
+    .terminal {
+		position: relative;
+		background: #ffffff;
+		width: 80%;
+		max-width: 600px;
+		min-height: 300px;
+		border-radius: 6px;
+		padding-top: 45px;
+		margin-top: 8px;
+		overflow: hidden;
+		border: 1px solid rgb(58, 58, 58);
+
+		canvas {
+			width: 100%;
+			// min-height: 300px;
+		}
+    }
+  
+    .terminal::before {
+		content: "\2022 \2022 \2022";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 4px;
+		background: rgb(58, 58, 58);
+		color: #c2c3c4;
+		width: 100%;
+		font-size: 2rem;
+		line-height: 0;
+		padding: 14px 0;
+		text-indent: 4px;
+    }
+  }
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .terminal {
+      	width: 100%;
+    }
+  }
