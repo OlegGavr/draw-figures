@@ -87,10 +87,27 @@
 		}
 	}
 
+	@keyframes show {
+		from {opacity: 0}
+		to {opacity: 1}
+	}
+
+	@keyframes hide {
+		from {opacity: 1}
+		to {opacity: 0}
+	}
+
+	.show-content {
+		animation: show 1s;
+
+	}
+
+	.hide-content {
+		animation: hide 1s;
+	}
+
 	.tip-content {
-		display: none;
-		
-		margin: 5px 0;
+		margin: 10px 0;
 		width: 80%;
 		min-width: 200px;
 		max-width: 600px;
@@ -110,6 +127,16 @@
 			margin: 5px 0;
 			padding: 0 25px;
 			list-style: circle;
+
+			li {
+				.main_text {
+					color: rgb(102, 102, 255);
+				}
+
+				.add_text {
+					color: rgb(158, 158, 158);
+				}
+			}
 		}
 	}
 	
@@ -162,12 +189,12 @@
 		overflow: hidden;
 		border: 1px solid rgb(58, 58, 58);
 
-		canvas {
-			width: 100%;
-			// min-height: 300px;
+		.error-text {
+			color: red;
+			font-weight: bold;
+			text-align: center;
 		}
-    }
-  
+	}  
     .terminal::before {
 		content: "\2022 \2022 \2022";
 		position: absolute;
