@@ -8,7 +8,6 @@
   <h2>Write the command(s)</h2>
 
   <textarea class="textarea" [(ngModel)]="text" placeholder="figureName -p [x, y]... options"></textarea>
-  <!-- <input [(ngModel)]="text"> -->
   <div class="tip-block">
     <span class="example">Example: line -p [20, 20] [50, 70] -c rgb(240, 100, 50)</span>
     <span class="tip" [innerHTML]="tipTitle" (click)="onChangeShow()"></span>
@@ -35,9 +34,7 @@
     <p class="error-text" *ngIf="errorExsist" >
       {{errorText}}
     </p>
-    <!-- <ng-template #error> -->
     <canvas id="canvas" width="600px" height="300px"></canvas>
-    <!-- </ng-template> -->
   </div>
 
 </div>
