@@ -13,6 +13,7 @@ export class AppComponent {
 	styleShow = false
 	errorText = ''
 	errorExsist = false
+	widthCanvas = 600
 
 	onChangeShow() {
 		if (this.tipTitle === 'Show all &darr;') {
@@ -37,10 +38,10 @@ export class AppComponent {
 			for (let i = 1; i < crds.length; i++) {
 				const elements = crds[i].trim().split(',')
 				if (elements.length === 2) {
-					const x = +elements[0].trim()
-					const y = +elements[1].trim().slice(0, elements[1].trim().length - 1).trim()
-					if (!isNaN(x) && !isNaN(y) && elements[1][elements[1].length - 1] === ']')
-						points.push(x, y)
+					const x = elements[0].trim()
+					const y = elements[1].trim().slice(0, elements[1].trim().length - 1).trim()
+					if (x !== '' && y !== '' && !isNaN(+x) && !isNaN(+y) && elements[1][elements[1].length - 1] === ']')
+						points.push(+x, +y)
 					else
 						return false
 				} else
@@ -62,9 +63,9 @@ export class AppComponent {
 			switch(name) {
 				case 'rgb':
 					if (atr.length === 3) {
-						const r = +atr[0].trim()
-						const g = +atr[1].trim()
-						const b = +atr[2].trim().slice(0, atr[2].trim().length - 1).trim()
+						const r = atr[0].trim() ? +atr[0].trim() : 'no'
+						const g = atr[1].trim() ? +atr[1].trim() : 'no'
+						const b = atr[2].trim().slice(0, atr[2].trim().length - 1).trim() ? +atr[2].trim().slice(0, atr[2].trim().length - 1).trim() : 'no'
 						const check = atr[2].trim()[atr[2].trim().length - 1] === ')'
 						if (r >= 0 && r <=255 && g >= 0 && g <=255 && b >= 0 && b <=255 && check) {
 							color += name + '(' + r + ', ' + g + ', ' + b + ')'
@@ -95,28 +96,44 @@ export class AppComponent {
 	}
 
 	drawLine(txt: string[], ctx: CanvasRenderingContext2D) {
-		if (txt.length > 1 && txt.length < 4) {
+		if (txt.length > 1 && txt.length < 6) {
 			if (txt[1][0] === 'p') {
 				const points = this.parseParams(txt[1])
 				if (points !== false && points.length === 4) {
-					if (txt.length === 3) {
-						if (txt[2][0] === 'c') {
-							const color = this.parseColor(txt[2])
-							if (color !== false) {
-								ctx.beginPath()
-								ctx.strokeStyle = color
-								ctx.moveTo(points[0], points[1])
-								ctx.lineTo(points[2], points[3])
-								ctx.closePath()
-								ctx.stroke()
+					if (txt.length > 2) {
+						const beenLitt = []
+						mark: for (let i = 2; i < txt.length; i++) {
+							const element = txt[i][0]
+							if (!beenLitt.includes(element)) {
+								switch(element) {
+									case 'c':
+										const color = this.parseColor(txt[2])
+										if (color !== false) {
+											ctx.beginPath()
+											ctx.strokeStyle = color
+											ctx.moveTo(points[0], points[1])
+											ctx.lineTo(points[2], points[3])
+											ctx.closePath()
+											ctx.stroke()
+										} else {
+											this.errorText = 'Invalid parameters in the -c option for line.'
+											this.errorExsist = true
+											break mark
+										}
+										break;
+
+									default:
+										this.errorText = 'The additional options are incorrectly written for line.'
+										this.errorExsist = true
+										break mark
+								}
 							} else {
-								this.errorText = 'Invalid parameters in the -c option for line.'
+								this.errorText = 'The additional options are repeated for line.'
 								this.errorExsist = true
+								break mark
 							}
-						} else {
-							this.errorText = 'Not found -c option for line.'
-							this.errorExsist = true
 						}
+
 					} else {
 						ctx.beginPath()
 						ctx.strokeStyle = 'black'
@@ -163,6 +180,9 @@ export class AppComponent {
 											ctx.lineTo(points[0], points[1])
 											ctx.closePath()
 											ctx.stroke()
+
+											if (beenLitt.includes('b') && i === txt.length - 1)
+												ctx.fill()
 										} else {
 											this.errorText = 'Invalid parameters in the -c option for rectangle.'
 											this.errorExsist = true
@@ -253,9 +273,8 @@ export class AppComponent {
 											ctx.lineTo(points[0], points[1])
 											ctx.closePath()
 											ctx.stroke()
-											if (beenLitt.includes('b') && i === txt.length - 1) {
+											if (beenLitt.includes('b') && i === txt.length - 1)
 												ctx.fill()
-											}
 										} else {
 											this.errorText = 'Invalid parameters in the -c option for triangle.'
 											this.errorExsist = true
@@ -508,15 +527,20 @@ export class AppComponent {
 		}
 	}
 
+	// drawStar(txt: string[], ctx: CanvasRenderingContext2D) {}
+
 	onDrawHandler() {
 		this.errorText = ''
 		this.errorExsist = false
 
 		const figures = this.text.split(';')
 
+		const terminal = <HTMLDivElement> document.querySelector('.terminal')
+		this.widthCanvas = terminal.clientWidth
+
 		const canvas = <HTMLCanvasElement> document.querySelector("#canvas")
 		const ctx = canvas.getContext('2d')
-		canvas.width = canvas.width
+		canvas.width = terminal.clientWidth
 
 		for (let i = 0; i < figures.length; i++) {
 			const txt = figures[i].split(' -')
@@ -541,6 +565,10 @@ export class AppComponent {
 				case 'ellipse':
 					this.drawEllipse(txt, ctx)	
 					break;
+				
+				// case 'star':
+				// 	this.drawStar(txt, ctx)
+				// 	break;
 
 				case '':
 					break;
