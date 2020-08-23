@@ -95,7 +95,7 @@ export class AppComponent {
 			return false
 	}
 
-	line(ctx: CanvasRenderingContext2D, points) {
+	line(ctx: CanvasRenderingContext2D, points: number[]) {
 		ctx.moveTo(points[0], points[1])
 		ctx.lineTo(points[2], points[3])
 		ctx.closePath()
@@ -183,7 +183,7 @@ export class AppComponent {
 		}
 	}
 
-	rectangle(ctx: CanvasRenderingContext2D, points) {
+	rectangle(ctx: CanvasRenderingContext2D, points: number[]) {
 		ctx.moveTo(points[0], points[1])
 		ctx.lineTo(points[2], points[1])
 		ctx.lineTo(points[2], points[3])
@@ -299,7 +299,7 @@ export class AppComponent {
 		}
 	}
 
-	triangle(ctx: CanvasRenderingContext2D, points) {
+	triangle(ctx: CanvasRenderingContext2D, points: number[]) {
 		ctx.moveTo(points[0], points[1])
 		ctx.lineTo(points[2], points[3])
 		ctx.lineTo(points[4], points[5])
@@ -414,7 +414,7 @@ export class AppComponent {
 		}
 	}
 
-	circle(ctx: CanvasRenderingContext2D, points, radius) {
+	circle(ctx: CanvasRenderingContext2D, points: number[], radius: number) {
 		ctx.arc(points[0], points[1], radius, 0, 2*Math.PI, false)
 		ctx.closePath()
 		ctx.stroke()
@@ -537,7 +537,7 @@ export class AppComponent {
 		}
 	}
 
-	ellipse(ctx: CanvasRenderingContext2D, points, radius1, radius2) {
+	ellipse(ctx: CanvasRenderingContext2D, points: number[], radius1: number, radius2: number) {
 		ctx.ellipse(points[0], points[1], radius1, radius2, 0, 0, 2 * Math.PI)
 		ctx.closePath()
 		ctx.stroke()
@@ -661,7 +661,7 @@ export class AppComponent {
 		}
 	}
 
-	star(ctx: CanvasRenderingContext2D, points, count, radius1, radius2) {
+	star(ctx: CanvasRenderingContext2D, points: number[], count: number, radius1: number, radius2: number) {
 		let rot = Math.PI / 2 * 3
 		const step = Math.PI / count
 		ctx.moveTo(points[0], points[1] - radius2)
