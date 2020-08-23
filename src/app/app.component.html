@@ -19,11 +19,13 @@
   }">
     <h3>All commands</h3>
     <ul>
-      <li><span class="main_text">line -p [50, 50] [100, 100] </span><span class="add_text">-c rgb(255, 0, 0);</span></li>
-      <li><span class="main_text">rectangle -p [50, 50] [100, 100] </span><span class="add_text">-c rgb(0, 255, 0) -b rgba(255, 0, 0, 0.3);</span></li>
-      <li><span class="main_text">triangle -p [50, 50] [50, 100] [100, 100] </span><span class="add_text">-c rgb(0, 0, 255) -b rgba(255, 0, 0,0.3);</span></li>
-      <li><span class="main_text">circle -p [75, 75] -r 25 </span><span class="add_text">-c rgba(255, 0, 0, 0.8) -b rgba(0, 255, 0, 0.3);</span></li>
-      <li><span class="main_text">ellipse -p [75, 75] -r1 50 -r2 25 </span><span class="add_text">-c rgb(0, 255, 0) -b rgba(255, 0, 0, 0.3);</span></li>
+
+      <li><span class="main_text">line -p [50, 50] [100, 100] </span><span class="add_text">-c rgb(255, 0, 0) -w 2;</span></li>
+      <li><span class="main_text">rectangle -p [150, 50] [200, 100] </span><span class="add_text">-c rgb(0, 255, 0) -b rgba(255, 0, 100, 0.3)  -w 2;</span></li>
+      <li><span class="main_text">triangle -p [400, 50] [450, 100] [350, 100] </span><span class="add_text">-c rgb(0, 0, 255) -b rgba(0, 255, 0, 0.3)  -w 3;</span></li>
+      <li><span class="main_text">circle -p [75, 250] -r 25 </span><span class="add_text">-c rgba(0, 0, 255, 0.8) -b rgba(255, 255, 0, 0.5)  -w 4;</span></li>
+      <li><span class="main_text">ellipse -p [500, 230] -r1 50 -r2 25 </span><span class="add_text">-c rgb(255, 0, 100) -b rgba(255, 100, 100, 0.3)  -w 5;</span></li>
+      <li><span class="main_text">star -p [300, 150] -n 5 -r1 50 -r2 25 </span><span class="add_text">-c rgb(0, 255, 255) -b rgba(0, 0, 255, 0.3)  -w 2;</span></li>
     </ul>
     <p class='tip-command'>Tip 1: if there are several commands, then put a separator `;` at the end of each of them.</p>
     <p class='tip-command'>Tip 2: the X-coordinate belongs to the range from 0 to {{widthCanvas}}, Y-coordinate - from 0 to 200.</p>
